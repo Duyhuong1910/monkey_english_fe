@@ -1,16 +1,12 @@
-import React, { useState } from "react";
-import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
-  const navigate = useNavigate();
-
+  const { logout } = useContext(AuthContext); 
   const adminUser = { username: "Admin_Monkey", role: "admin" };
-
-  const handleLogout = () => {
-    navigate("/login");
-  };
 
   const menuItems = [
     {
@@ -194,7 +190,7 @@ function AdminLayout() {
                 A
               </div>
               <button
-                onClick={handleLogout}
+                onClick={logout}
                 className="text-slate-400 hover:text-red-500 transition ml-2"
                 title="Đăng xuất"
               >

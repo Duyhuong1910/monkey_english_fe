@@ -55,6 +55,8 @@ export const AuthProvider = ({ children }) => {
     // Khuyến nghị: Dùng thư viện điều hướng thay vì window.location để tránh reload lại toàn trang nếu không cần thiết
     // Tuy nhiên nếu hệ thống cần clear state triệt để thì window.location.href vẫn ổn định.
     window.location.href = "/login";
+    
+    return null; // Tránh render thêm sau khi redirect
   };
 
   // Màn hình chờ khi đang check token
