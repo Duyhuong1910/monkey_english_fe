@@ -20,14 +20,14 @@ const LessonPage = () => {
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
-
+  const api_url = import.meta.env.VITE_URL_API;
   const userId = localStorage.getItem("userId") || 1;
 
   useEffect(() => {
     const fetchLesson = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/lessons/detail/${id}?userId=${userId}`,
+          `${api_url}/api/lessons/detail/${id}?userId=${userId}`,
         );
         setData(res.data);
         if (res.data.savedAnswers) {
@@ -57,7 +57,7 @@ const LessonPage = () => {
     setIsSubmitted(true);
 
     try {
-      await axios.post("http://localhost:5000/api/lessons/save-progress", {
+      await axios.post(`${api_url}/api/lessons/save-progress`, {
         userId,
         lessonId: id,
         courseId: data.course_id,

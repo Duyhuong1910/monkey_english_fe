@@ -19,7 +19,7 @@ const LessonDetail = () => {
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const api_url = import.meta.env.VITE_URL_API;
   useEffect(() => {
     fetchLesson();
   }, [id]);
@@ -27,7 +27,7 @@ const LessonDetail = () => {
   const fetchLesson = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/lessons/detail/${id}`,
+        `${api_url}/api/lessons/detail/${id}`,
       );
       setData(res.data);
     } catch (err) {
