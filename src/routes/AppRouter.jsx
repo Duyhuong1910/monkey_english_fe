@@ -19,10 +19,12 @@ import AdminLessonContent from "../pages/admin/AdminLessonContent";
 import AdminQuizQuestions from "../pages/admin/AdminQuizQuestions";
 import AdminUserList from "../pages/admin/AdminUserList";
 import Leaderboard from "../pages/user/Leaderboard";
+import { AuthProvider } from "../contexts/AuthContext";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
+    <AuthProvider>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
@@ -70,6 +72,7 @@ const AppRouter = () => {
           </Route>
         </Route>
       </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

@@ -1,11 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // 1. AN TOÀN KHI ĐỌC DỮ LIỆU TỪ LOCALSTORAGE
   useEffect(() => {
@@ -54,9 +55,8 @@ export const AuthProvider = ({ children }) => {
 
     // Khuyến nghị: Dùng thư viện điều hướng thay vì window.location để tránh reload lại toàn trang nếu không cần thiết
     // Tuy nhiên nếu hệ thống cần clear state triệt để thì window.location.href vẫn ổn định.
-    window.location.href = "/login";
-    
-    return null; // Tránh render thêm sau khi redirect
+    navigate("/login");
+
   };
 
   // Màn hình chờ khi đang check token
